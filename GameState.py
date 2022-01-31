@@ -8,20 +8,14 @@ INITIAL_DIRECTION = Direction.RIGHT
 
 class GameState:
     def __init__(self,
-                 snake=None,
-                 direction=INITIAL_DIRECTION,
-                 food: Position = None,
+                 snake: [Position],
+                 direction,
+                 food: Position,
                  field_size: int = 20):
-        if snake is None:
-            snake = INITIAL_SNAKE[:]
         self.snake = snake
         self.direction = direction
         self.field_size = field_size
-
-        if food is None:
-            self.set_random_food_position()
-        else:
-            self.food = food
+        self.food = food
 
     def set_initial_position(self):
         self.snake = INITIAL_SNAKE[:]
@@ -51,6 +45,10 @@ class GameState:
     def can_turn(self, direction):
         new_head_position = self.next_head_position(direction)
         return new_head_position != self.snake[-2]
+
+    def turn(self, direction):
+        if self.can_turn(direction):
+            self.direction = direction
 
     def step(self):
         new_head_position = self.next_head_position(self.direction)

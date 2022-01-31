@@ -133,7 +133,11 @@ class GameStateTest(unittest.TestCase):
 
     def test_snake_eats_food(self):
         state = GameState(
-            snake=[Position(1, 2), Position(2, 2), Position(3, 2)],
+            snake=[
+                Position(1, 2),
+                Position(2, 2),
+                Position(3, 2)
+            ],
             direction=Direction.UP,
             food=Position(3, 1),
             field_size=20,
@@ -141,13 +145,24 @@ class GameStateTest(unittest.TestCase):
 
         state.step()
 
-        expected_state = [Position(1, 2), Position(2, 2), Position(3, 2), Position(3, 1)]
+        expected_state = [
+            Position(1, 2),
+            Position(2, 2),
+            Position(3, 2),
+            Position(3, 1)
+        ]
         self.assertEqual(expected_state, state.snake)
         self.assertEqual(False, state.food in state.snake)
 
     def test_snake_dies(self):
         state = GameState(
-            snake=[Position(1, 2), Position(2, 2), Position(3, 2), Position(3, 3), Position(2, 3)],
+            snake=[
+                Position(1, 2),
+                Position(2, 2),
+                Position(3, 2),
+                Position(3, 3),
+                Position(2, 3)
+            ],
             direction=Direction.UP,
             food=Position(3, 1),
             field_size=25
@@ -162,9 +177,42 @@ class GameStateTest(unittest.TestCase):
         self.assertEqual(INITIAL_DIRECTION, state.direction)
         self.assertEqual(25, state.field_size)
 
+    def test_turn(self):
+        state = GameState(
+            snake=[
+                Position(1, 2),
+                Position(2, 2),
+                Position(3, 2),
+                Position(3, 3),
+                Position(2, 3)
+            ],
+            direction=Direction.UP,
+            food=Position(3, 1),
+            field_size=25
+        )
+
+        state.turn(Direction.UP)
+        self.assertEqual(Direction.UP, state.direction)
+
+        state.turn(Direction.LEFT)
+        self.assertEqual(Direction.LEFT, state.direction)
+
+        state.turn(Direction.DOWN)
+        self.assertEqual(Direction.DOWN, state.direction)
+
+        state.turn(Direction.RIGHT)
+        # Pozostaje stara wartość, bo nie można skręcić w prawo
+        self.assertEqual(Direction.RIGHT, state.direction)
+
     def test_can_turn(self):
         state = GameState(
-            snake=[Position(1, 2), Position(2, 2), Position(3, 2), Position(3, 3), Position(2, 3)],
+            snake=[
+                Position(1, 2),
+                Position(2, 2),
+                Position(3, 2),
+                Position(3, 3),
+                Position(2, 3)
+            ],
             direction=Direction.UP,
             food=Position(3, 1),
             field_size=25
