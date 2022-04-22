@@ -43,23 +43,23 @@ class GameState:
             search = self.food in self.snake
 
     def can_turn(self, direction):
-        new_head_position = self.next_head_position(direction)
-        return new_head_position != self.snake[-2]
+        new_head = self.next_head_position(direction)
+        return new_head != self.snake[-2]
 
     def turn(self, direction):
         if self.can_turn(direction):
             self.direction = direction
 
     def step(self):
-        new_head_position = self.next_head_position(self.direction)
+        new_head = self.next_head_position(self.direction)
 
-        if new_head_position in self.snake:
+        if new_head in self.snake:
             self.set_initial_position()
             return
 
-        self.snake.append(new_head_position)
+        self.snake.append(new_head)
 
-        if new_head_position == self.food:
+        if new_head == self.food:
             self.set_random_food_position()
         else:
             self.snake = self.snake[1:]

@@ -191,18 +191,18 @@ class GameStateTest(unittest.TestCase):
             field_size=25
         )
 
-        state.turn(Direction.UP)
-        self.assertEqual(Direction.UP, state.direction)
-
         state.turn(Direction.LEFT)
         self.assertEqual(Direction.LEFT, state.direction)
+
+        state.turn(Direction.UP)
+        self.assertEqual(Direction.UP, state.direction)
 
         state.turn(Direction.DOWN)
         self.assertEqual(Direction.DOWN, state.direction)
 
         state.turn(Direction.RIGHT)
         # Pozostaje stara wartość, bo nie można skręcić w prawo
-        self.assertEqual(Direction.RIGHT, state.direction)
+        self.assertEqual(Direction.DOWN, state.direction)
 
     def test_can_turn(self):
         state = GameState(
