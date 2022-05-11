@@ -1,8 +1,8 @@
 import pygame
 
-from Direction import Direction
-from GameState import GameState
-from Position import Position
+from direction import Direction
+from game_state import GameState
+from position import Position
 
 pygame.init()
 

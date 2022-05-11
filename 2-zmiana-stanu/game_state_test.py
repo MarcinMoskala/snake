@@ -1,8 +1,8 @@
 import unittest
-from GameState import GameState
+from game_state import GameState
 
-from Position import Position
-from Direction import Direction
+from position import Position
+from direction import Direction
 
 
 class GameStateTest(unittest.TestCase):
@@ -170,9 +170,9 @@ class GameStateTest(unittest.TestCase):
 
         state.step()
 
-        from GameState import INITIAL_SNAKE
+        from game_state import INITIAL_SNAKE
         self.assertEqual(INITIAL_SNAKE, state.snake)
         self.assertFalse(state.food in state.snake)
-        from GameState import INITIAL_DIRECTION
+        from game_state import INITIAL_DIRECTION
         self.assertEqual(INITIAL_DIRECTION, state.direction)
         self.assertEqual(25, state.field_size)

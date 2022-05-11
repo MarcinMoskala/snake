@@ -1,5 +1,5 @@
-from Position import Position
-from Direction import Direction
+from position import Position
+from direction import Direction
 import random
 
 INITIAL_SNAKE = [Position(1, 2), Position(2, 2), Position(3, 2)]
@@ -41,14 +41,6 @@ class GameState:
                 random.randint(0, self.field_size - 1)
             )
             search = self.food in self.snake
-
-    def can_turn(self, direction):
-        new_head = self.next_head_position(direction)
-        return new_head != self.snake[-2]
-
-    def turn(self, direction):
-        if self.can_turn(direction):
-            self.direction = direction
 
     def step(self):
         new_head = self.next_head_position(self.direction)

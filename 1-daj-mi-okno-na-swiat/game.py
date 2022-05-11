@@ -1,6 +1,6 @@
 import pygame
 
-from Position import Position
+from position import Position
 
 pygame.init()
 
