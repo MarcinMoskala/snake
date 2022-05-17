@@ -2,7 +2,6 @@ import pygame
 
 from direction import Direction
 from game_state import GameState
-from position import Position
 
 pygame.init()
 
@@ -17,7 +16,7 @@ WIDTH = CUBE_SIZE * CUBES_NUM
 screen = pygame.display.set_mode((WIDTH, WIDTH))
 
 
-def draw_snake_part(pos: Position):
+def draw_snake_part(pos):
     position = (pos.x * CUBE_SIZE,
                 pos.y * CUBE_SIZE,
                 CUBE_SIZE,
@@ -25,12 +24,12 @@ def draw_snake_part(pos: Position):
     pygame.draw.rect(screen, GREEN, position)
 
 
-def draw_snake(snake: [Position]):
+def draw_snake(snake):
     for element in snake:
         draw_snake_part(element)
 
 
-def draw_food(pos: Position):
+def draw_food(pos):
     radius = float(CUBE_SIZE) / 2
     position = (pos.x * CUBE_SIZE + radius,
                 pos.y * CUBE_SIZE + radius)

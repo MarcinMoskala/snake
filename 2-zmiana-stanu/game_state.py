@@ -1,6 +1,7 @@
-from position import Position
+from random import randint
+
 from direction import Direction
-import random
+from position import Position
 
 INITIAL_SNAKE = [Position(1, 2), Position(2, 2), Position(3, 2)]
 INITIAL_DIRECTION = Direction.RIGHT
@@ -8,10 +9,10 @@ INITIAL_DIRECTION = Direction.RIGHT
 
 class GameState:
     def __init__(self,
-                 snake: [Position],
+                 snake,
                  direction,
-                 food: Position,
-                 field_size: int = 20):
+                 food,
+                 field_size=20):
         self.snake = snake
         self.direction = direction
         self.field_size = field_size
@@ -37,8 +38,8 @@ class GameState:
         search = True
         while search:
             self.food = Position(
-                random.randint(0, self.field_size - 1),
-                random.randint(0, self.field_size - 1)
+                randint(0, self.field_size - 1),
+                randint(0, self.field_size - 1)
             )
             search = self.food in self.snake
 
